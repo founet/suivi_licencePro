@@ -1,0 +1,7 @@
+parameters:
+#    iut_ancien_etudiant.example.class: Iut\AncienEtudiantBundle\Example
+
+services:
+#    iut_ancien_etudiant.example:
+#        class: %iut_ancien_etudiant.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

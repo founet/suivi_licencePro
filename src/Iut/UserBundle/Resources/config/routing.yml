@@ -1,0 +1,21 @@
+iut_user_homepage:
+    pattern:  /admin/utilisateurs/
+    defaults: { _controller: IutUserBundle:User:index }
+    
+modif_user_at_list:
+    pattern:  /admin/utilisateur/edit/{id}
+    defaults: { _controller: IutUserBundle:User:modifUser }
+    requirements:
+        id: \d+
+        
+add_user_at_list:
+    pattern:  /admin/utilisateur/add/
+    defaults: { _controller: IutUserBundle:User:addUser }
+    
+supprimer_user:
+    pattern:  /admin/utilisateur/supprimer/
+    defaults: { _controller: IutUserBundle:User:supprimerUser}
+    
+aide:
+    pattern:  /aide/
+    defaults: { _controller: IutUserBundle:User:Aide}

@@ -1,0 +1,97 @@
+{% extends "::layout.html.twig" %}
+{% block content %}
+
+              
+       <div class="row container">
+            <div>
+                <h3><leqend>  Ajouter un utilisateur  </leqend></h3>
+            </div>
+            <form class="form-horizontal" role="form" action="{{path('add_user_at_list')}}" method="POST" id="etudiant">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="pseudo" class="col-lg-2 control-label">Nom d'utilisateur</label>
+                        <div class="col-lg-10">
+                           
+                            <input type="text" class="form-control" id="pseudo" id="username" name="username" data-validation="required"  data-validation-error-msg="Champ Nom obligatoire" value="" />
+
+                        </div>
+                    </div>
+                </div>
+         
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="email" class="col-lg-2 control-label">Email</label>
+                        <div class="col-lg-10">
+                            
+                            <input type="text"class="form-control" id="email"  name="email" data-validation-error-msg="Adresse email invalide" data-validation="email" value=""/>
+    
+                        </div>
+                    </div>
+                </div>
+                
+                 <div class="col-md-6" style="clear: left">
+                    <div class="form-group">
+                        <label for="pwd" class="col-lg-2 control-label">Mot de passe</label>
+                        <div class="col-lg-10">
+                            
+                            <input type="password"class="form-control" id="pwd"  name="pwd"  value=""  data-validation="length" data-validation-length="min8"/>
+    
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 ">
+                    <div class="form-group">
+                        <label for="droit" class="col-lg-2 control-label">Niveau d'accès</label>
+                        <div class="col-lg-10">
+                            <select class="form-control" name="role">
+                                 
+                                <option value="ROLE_USER" >Gestionnaire</option>
+                                <option value="ROLE_ADMIN" >Administrateur</option>
+
+                    
+                            </select>
+                           
+                        </div>
+                    </div>
+                    </div>
+                  <div class="col-md-6 ">
+                       <div class="form-group">
+                            <label  class="col-lg-2 control-label"></label>
+                            <div class="col-lg-10">
+                                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span>
+                                            Valider
+                                    </button>
+                            </div>
+                      
+                        </div>
+                
+                </div>
+                
+                
+                
+                  
+            </form>
+            
+              
+            
+             
+     </div>
+       
+     <script>
+                
+                var myLanguage = {
+                 errorTitle : 'Formulaire non valide!',
+                };
+                $.validate({
+                    form : '#etudiant',
+                    language:myLanguage,
+                    validateOnBlur : false, // disable validation when input looses focus
+                    errorMessagePosition : 'top', // Instead of 'element' which is default
+                    scrollToTopOnError : false, // Set this property to true if you have a long form
+                    
+    
+            });
+               
+              </script>      
+{% endblock %}

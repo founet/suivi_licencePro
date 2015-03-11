@@ -1,0 +1,22 @@
+{% extends "::layout.html.twig" %}
+
+{% block content %}
+ <div id="poste">
+    <form action="{{path('ajouter_poste')}}" method="POST" style="margin-bottom: 15px">
+        <p><label>Titre poste </label> <input type="text" value="" id="titre" name="titre" style="padding-left:10px"/><input type="submit" id="valid" value="VALIDER" style="margin-left: 15px"/></p>
+        <p><input type="hidden" value="" name="id" id="idposte"/></p>
+        
+    </form>
+        <table class="table moitier" >
+            <tr><th>ID : </th><th>Titre</th><th></th></tr>
+            {% for poste in postes %}
+                <tr id="{{poste.id}}"><th>{{poste.id}} </th><th><a href="javascript:;" onclick="getPoste({{poste.id}})">{{poste.poste}}</a></th><th><a href="javascript:;" class="glyphicon glyphicon-remove-circle" onclick="supprimerPoste({{poste.id}})"></a></th></tr>
+            {%endfor%}
+        </table>
+         
+</div>
+
+<p id="postePath" pathSupp="{{path('supprimer_poste')}}" pathGet="{{path('getPoste')}}" pathModif="{{path('modifier_poste')}}"></p>
+{% endblock %}
+
+

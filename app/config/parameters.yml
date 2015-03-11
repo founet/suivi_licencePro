@@ -1,0 +1,14 @@
+parameters:
+    database_driver: pdo_mysql
+    database_host: localhost
+    database_port: null
+    database_name: licence_pro
+    database_user: root
+    database_password: null
+    mailer_transport: 
+    mailer_host: 
+    mailer_user: 
+    mailer_password: 
+    locale: fr
+    secret: 466b7f6bd09674e1d62c1cdb8c56dce1a9739d68
+    database_path: null

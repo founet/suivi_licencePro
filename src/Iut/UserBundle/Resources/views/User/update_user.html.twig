@@ -1,0 +1,100 @@
+{% extends "::layout.html.twig" %}
+{% block content %}
+
+
+<div class="row container">
+            <div>
+                <h3><leqend>  Modifier un utilisateur  </leqend></h3>
+            </div>
+            <form class="form-horizontal" role="form" action="{{path('modif_user_at_list',{'id':user.id})}}" method="POST" id="etudiant">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="pseudo" class="col-lg-2 control-label">Nom d'utilisateur</label>
+                        <div class="col-lg-10">
+                           
+                            <input type="text" class="form-control" id="pseudo" id="username" name="username" data-validation="required"  data-validation-error-msg="Champ Nom obligatoire"value="{{user.username}}" />
+
+                        </div>
+                    </div>
+                </div>
+         
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="email" class="col-lg-2 control-label">Email</label>
+                        <div class="col-lg-10">
+                            
+                            <input type="text"class="form-control" id="email"  name="email" data-validation-error-msg="Adresse email invalide" data-validation="email" value="{{user.email}}"/>
+    
+                        </div>
+                    </div>
+                </div>
+                
+                 <div class="col-md-6" style="clear: left">
+                    <div class="form-group">
+                        <label for="pwd" class="col-lg-2 control-label">Mot de passe</label>
+                        <div class="col-lg-10">
+                            
+                            <input type="password"class="form-control" id="pwd"  name="pwd"  value="" />
+    
+                        </div>
+                    </div>
+                         <p style="margin-left: 94px">Laisser le champ vide si vous ne voulez pas modifier le mot de passe </p>  
+                </div>
+                
+                <div class="col-md-6 ">
+                    <div class="form-group">
+                        <label for="droit" class="col-lg-2 control-label">Niveau d'acces</label>
+                        <div class="col-lg-10">
+                            <select class="form-control" name="role">
+                                 
+                                <option value="ROLE_USER" {% if user.roles[0]=="ROLE_USER"%}selected{%endif%}>Gestionnaire</option>
+                                <option value="ROLE_ADMIN" {% if user.roles[0]=="ROLE_ADMIN"%}selected{%endif%}>Administrateur</option>
+
+                    
+                            </select>
+                           
+                        </div>
+                    </div>
+                    </div>
+                  <div class="col-md-6 ">
+                       <div class="form-group">
+                            <label  class="col-lg-2 control-label"></label>
+                            <div class="col-lg-10">
+                                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span>
+                                            Valider
+                                    </button>
+                            </div>
+                      
+                        </div>
+                
+                </div>
+                
+                
+                
+                  
+            </form>
+            
+              
+            
+             
+     </div>
+
+
+<script>
+                
+                var myLanguage = {
+                 errorTitle : 'Formulaire non valide!',
+                };
+                $.validate({
+                    form : '#etudiant',
+                    language:myLanguage,
+                    validateOnBlur : false, // disable validation when input looses focus
+                    errorMessagePosition : 'top', // Instead of 'element' which is default
+                    scrollToTopOnError : false, // Set this property to true if you have a long form
+                     errorTitle:"Erreur dans le formulaire"
+    
+            });
+               
+              </script>
+
+{% endblock %}

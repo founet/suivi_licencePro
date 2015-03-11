@@ -1,0 +1,28 @@
+{% extends "::layout.html.twig" %}
+{% block content %}
+
+<script>
+        
+    
+</script>
+<a href="{{path('ajouter_etudiant')}}" class="btn btn-primary" style="margin-bottom:15px">Ajouter un étudiant</a>
+<table class="table ">
+    <tr>
+        <th>Nom </th>
+        <th>Prénom</th>
+        <th>Promotion</th>
+        <th>Dernier Poste</th>
+        <th>Actions</th>
+    </tr>
+    {% for etudiant in etudiants %}
+     <tr class='tr{{etudiant.id}}'>
+         <td><a href="{{path('profil_etudiant',{'id':etudiant.id})}}" class="btn">{{etudiant.nom}}</a> </td>
+        <td>{{etudiant.prenom}}</td>
+        <td>{{etudiant.promotion.annee|date('Y')}}</td>
+        <td>{% if (etudiant.experiences|length > 0) %} {{etudiant.experiences[0].poste.poste}} {%endif %}</td>
+        <td><a href="{{path('modifier_etudiant',{'id':etudiant.id})}}" class="glyphicon glyphicon-edit" ></a> - <a href="#" class=" glyphicon glyphicon-remove-circle" onclick="supprimerEtudiant({{etudiant.id}})" id="{{etudiant.id}}" path="{{path('supprimer_etudiant')}}"></a></td>
+    </tr>
+    {% endfor%}
+</table>
+
+{% endblock %}

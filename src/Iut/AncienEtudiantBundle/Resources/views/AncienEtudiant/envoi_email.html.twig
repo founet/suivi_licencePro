@@ -1,0 +1,24 @@
+{% extends "::layout.html.twig" %}
+
+{% block content %}
+<p><a href="{{path('envoyer_mail')}}" class="btn btn-primary">Envoyer un mail de rappel</a></p>
+
+<p class="text-center" style="font-size:18px; margin-bottom: 30px">Liste des étudiants à rappeler pour une mis à jour</p>
+<table class="table">
+    <tr>
+        <th>Nom </th>
+        <th>Prénom</th>
+        <th>Email</th>
+        <th>Dernière mise à jour </th>
+    </tr>
+    {% for etudiant in etudiants %}
+     <tr class='tr{{etudiant.id}}'>
+         <td><a href="{{path('profil_etudiant',{'id':etudiant.id})}}">{{etudiant.nom}}</a> </td>
+        <td>{{etudiant.prenom}}</td>
+        <td>{{etudiant.email}}</td>
+        <td>{{etudiant.dateModif|date('d/m/Y')}}</td>
+      </tr>
+    {% endfor%}
+</table>
+
+{% endblock %}

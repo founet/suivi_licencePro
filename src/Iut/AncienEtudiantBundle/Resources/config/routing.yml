@@ -1,0 +1,122 @@
+liste_etudiants:
+    pattern:  /etudiant/
+    defaults: { _controller: IutAncienEtudiantBundle:AncienEtudiant:index}
+
+ajouter_etudiant:
+    pattern:  /etudiant/ajouter
+    defaults: { _controller: IutAncienEtudiantBundle:AncienEtudiant:ajouter}
+    
+modifier_etudiant:
+    pattern:  /etudiant/modifier/{id}
+    defaults: { _controller: IutAncienEtudiantBundle:AncienEtudiant:modifier}
+    requirements:
+        id: \d+
+        
+profil_etudiant:
+    pattern:  /etudiant/profil/{id}
+    defaults: { _controller: IutAncienEtudiantBundle:AncienEtudiant:profil}
+    requirements:
+        id: \d+
+        
+supprimer_etudiant:
+    pattern:  /etudiant/supprimer/
+    defaults: { _controller: IutAncienEtudiantBundle:AncienEtudiant:supprimer}
+    
+ 
+rechercher:
+    pattern:  /etudiant/rechercher/
+    defaults: { _controller: IutAncienEtudiantBundle:AncienEtudiant:getListeByCritera}
+
+getFormation:
+    pattern:  /etudiant/formation/
+    defaults: { _controller: IutAncienEtudiantBundle:AncienEtudiant:getFormation}
+    
+
+ajouter_formation:
+    pattern:  /etudiant/formation/ajouter
+    defaults: { _controller: IutAncienEtudiantBundle:AncienEtudiant:ajouterFormation}
+    
+modifier_formation:
+    pattern:  /etudiant/formation/modifier/{id}
+    defaults: { _controller: IutAncienEtudiantBundle:AncienEtudiant:modifierFormation}
+    requirements:
+        id: \d+
+
+supprimer_formation:
+    pattern:  /etudiant/formation/supprimer/
+    defaults: { _controller: IutAncienEtudiantBundle:AncienEtudiant:supprimerFormation}
+
+ajouter_experience:
+    pattern:  /etudiant/experience/ajouter
+    defaults: { _controller: IutAncienEtudiantBundle:AncienEtudiant:ajouterExperience}
+    
+modifier_experience:
+    pattern:  /etudiant/experience/modifier/{id}
+    defaults: { _controller: IutAncienEtudiantBundle:AncienEtudiant:modifierExperience}
+    requirements:
+        id: \d+
+        
+supprimer_experience:
+    pattern:  /etudiant/experience/supprimer/
+    defaults: { _controller: IutAncienEtudiantBundle:AncienEtudiant:supprimerExperience}
+
+poste:
+    pattern:  /admin/poste/
+    defaults: { _controller: IutAncienEtudiantBundle:AncienEtudiant:Poste}
+
+ajouter_poste:
+    pattern:  /admin/poste/ajouter
+    defaults: { _controller: IutAncienEtudiantBundle:AncienEtudiant:ajouterPoste}
+    
+modifier_poste:
+    pattern:  /admin/poste/modifier/
+    defaults: { _controller: IutAncienEtudiantBundle:AncienEtudiant:modifierPoste}
+   
+
+supprimer_poste:
+    pattern:  /admin/poste/supprimer/
+    defaults: { _controller: IutAncienEtudiantBundle:AncienEtudiant:supprimerPoste}
+    
+promotion:
+    pattern:  /admin/promotion/
+    defaults: { _controller: IutAncienEtudiantBundle:AncienEtudiant:Promotion}
+    
+ajouter_promotion:
+    pattern:  /admin/promotion/ajouter
+    defaults: { _controller: IutAncienEtudiantBundle:AncienEtudiant:ajouterPromotion}
+    
+modifier_promotion:
+    pattern:  /admin/promotion/modifier/
+    defaults: { _controller: IutAncienEtudiantBundle:AncienEtudiant:modifierPromotion}
+    
+
+supprimer_promotion:
+    pattern:  /admin/promotion/supprimer/
+    defaults: { _controller: IutAncienEtudiantBundle:AncienEtudiant:supprimerPromotion}
+    
+getPoste:
+    pattern:  /admin/poste/get/
+    defaults: { _controller: IutAncienEtudiantBundle:AncienEtudiant:getPoste}
+    
+ 
+getPromotion:
+    pattern:  /admin/promotion/get/
+    defaults: { _controller: IutAncienEtudiantBundle:AncienEtudiant:getPromotion}
+    requirements:
+        
+getExperience:
+    pattern:  /etudiant/experience/
+    defaults: { _controller: IutAncienEtudiantBundle:AncienEtudiant:getExperience}
+    
+liste_etudiants_mail:
+    pattern:  /etudiant/rappel/liste
+    defaults: { _controller: IutAncienEtudiantBundle:AncienEtudiant:EtudiantPasMAJ}
+    
+envoyer_mail:
+    pattern:  /etudiant/rappel/envoyer
+    defaults: { _controller: IutAncienEtudiantBundle:AncienEtudiant:EnvoyerMail}
+    
+    
+rechercheEmail:
+    pattern:  /etudiant/rechercher_email/
+    defaults: { _controller: IutAncienEtudiantBundle:AncienEtudiant:getByEmail}

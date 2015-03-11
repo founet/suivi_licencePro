@@ -1,0 +1,166 @@
+{% extends "::layout.html.twig" %}
+{%block stylesheets%}
+{{ parent() }}
+
+    <link rel="stylesheet" href="{{asset('bundles/iutancienetudiant/css/jquery.modal.css')}}" type="text/css" />
+  {%endblock%}
+{%block javascripts%}
+    {{ parent() }}
+ <script type="text/javascript" src="{{ asset('bundles/iutancienetudiant/js/jquery.modal.js') }}"></script>
+
+{%endblock%}
+{% block content %}
+ <style>
+    .login_form.modal {
+      border-radius: 0;
+      line-height: 18px;
+      padding: 0;
+      font-family: "Lucida Grande", Verdana, sans-serif;
+      max-height: 590px;width: 570px;
+      top: 0!important;margin-top: 10px!important
+    }
+
+    .login_form h3 {
+      margin: 0;
+      padding: 10px;
+      color: #fff;
+      font-size: 14px;
+      background: -moz-linear-gradient(top, #2e5764, #1e3d47);
+      background: -webkit-gradient(linear,left bottom,left top,color-stop(0, #1e3d47),color-stop(1, #2e5764));
+    }
+
+    .login_form.modal p { padding: 10px 30px;  margin: 0;
+        overflow: hidden;
+    }
+    .login_form.modal p:last-child { border: none; }
+    .login_form.modal p label { float: left; font-weight: bold; color: #333; font-size: 13px; width: 110px; line-height: 22px; }
+    .login_form.modal p input[type="text"]{
+        padding: 3px;
+        width: 175px;
+        margin-left: 30px
+    }
+    .descript{width: 220px;
+        padding: 5px;
+        height: 200px;
+        margin-left: 30px;}
+    .part {
+      display: none;
+    }
+p.submit{text-align: center}
+P.submit input[type="button"]{border: 1px solid #ccc; padding: 5px; width: 95px}
+  </style>
+    <div id="profil">
+        <h4 style="margin-bottom:10px"><strong>Informations personnelles</strong></h4>
+        <ul class="list-unstyled">
+            <li><strong>Nom : </strong>{{etudiant.nom}}</li>
+            <li><strong>Prénom : </strong>{{etudiant.prenom}}</li>
+            <li><strong>Email : </strong>{{etudiant.email}}</li>
+            
+        </ul>
+           
+            <fieldset>
+                <a href="#experience" rel="modal:open" path="{{path('ajouter_experience')}}" id="ajouter_exp" class="btn btn-primary" style="margin-bottom:10px">Ajouter une expérience</a>
+                <table  id="exp" class="table ">
+                  
+                    {% for experience in etudiant.experiences %}
+                    <tr id="{{experience.id}}" pathSupp="{{path('supprimer_experience')}}">
+                        <td>{{experience.dateDebut|date('d/m/Y')}} - {{experience.dateFin|date('d/m/Y')}} </td>
+                        <td>{{experience.poste.poste}} à {{experience.entreprise}}</td>
+                        <td><a href="#experience" rel="modal:open" class="modifExperience glyphicon glyphicon-edit" path="{{path('modifier_experience',{'id':experience.id})}}"></a> - <a href="javascript:;" class="glyphicon glyphicon-remove-circle" onclick="supprimerExperience({{experience.id}})"></a></td>
+                    </tr>
+                    {%endfor%}
+                 
+                     
+                    
+                </table>
+            </fieldset>   
+    <fieldset>
+        <a href="#formation" rel="modal:open" path="{{path('ajouter_formation')}}" id="ajouter_form" class="btn btn-primary" style="margin-bottom:10px">Ajouter une formation</a>
+                <table class="table " id="forma">
+                 
+                    {% for formation in etudiant.formations %}
+                   <tr id="{{formation.id}}" pathSupp="{{path('supprimer_formation')}}">
+                        <td>{{formation.dateDebut|date('d/m/Y')}} - {{formation.dateFin|date('d/m/Y')}}</td>
+                        <td>{{formation.intitule}} à {{formation.universite}}</td>
+                        <td><a class="modifFormation glyphicon glyphicon-edit" href="#formation" rel="modal:open" path="{{path('modifier_formation',{'id':formation.id})}}" ></a> - <a class="supp glyphicon glyphicon-remove-circle" href="javascript:;" onclick="supprimerFormation({{formation.id}})" ></a></td>
+                    </tr>
+                     {%endfor%}
+                   
+                </table>
+            </fieldset>   
+    </div>
+<form action="#" class="login_form modal" id="formation" style="display:none;height: 500px" method="POST">
+  <h3>Formulaire Formation</h3>
+  <p><label>Intitulé:</label><input type="text" id="intitule" name="intitule" value="" data-validation="required"  data-validation-error-msg="Champ Intitule obligatoire"/></p>
+  <p><label>Ecole/Université:</label><input type="text" id="ecole" name="ecole" value="" data-validation="required"  data-validation-error-msg="Champ Université obligatoire"/></p>
+  <p><label>Date début:</label><input type="text" id="dateDF" name="dateDF" value="" class="dateD" data-validation="required"  data-validation-error-msg="Champ Date début obligatoire"/></p>
+  <p><label>Date fin:</label><input type="text" id="dateFF" name="dateFF" value="" class="dateF" data-validation="required"  data-validation-error-msg="Champ Date Fin obligatoire"/></p>
+  <p><label>Description de la formation:</label><textarea class="descript" id="descrip-form" name="descrip-form"></textarea></p>
+  <input type="hidden"  name="idE" value="{{etudiant.id}}"/>
+  <p class="submit"><input type="submit"  value="Valider"  id="valider_formation"/></p>
+</form>
+<form action="#" class="login_form modal" id="experience" style="display:none;" method="POST">
+  <h3>Formulaire Expérience</h3>
+  <p>
+      <label>Poste occupé:</label>
+      <select name="poste" id="posteExp">
+            <option value="0">-----</option>
+          
+            {% for poste in postes %}
+                <option value="{{poste.id}}">{{poste.poste}}</option>
+            {%endfor%}
+          
+      </select>
+  
+  </p>
+  <p><label>Entreprise:</label><input type="text" id="entreprise" name="entreprise" value="" data-validation="required"  data-validation-error-msg="Champ Entreprise obligatoire"/></p>
+  <p><label>Date début:</label><input type="text" id="dateDE" name="dateDE" value="" class="dateD" data-validation="required"  data-validation-error-msg="Champ Date début obligatoire" /></p>
+  <p><label>Date fin:</label><input type="text" id="dateFE" name="dateFE" value="" class="dateF" data-validation="required"  data-validation-error-msg="Champ Date Fin obligatoire"/></p>
+  <p><label>Compétences poste:</label><input type="text" id="comp" name="competences" value="" data-validation="required"  data-validation-error-msg="Champ Compétences obligatoire"p>
+  <p><label>Description des tâches:</label><textarea class="descript" id="descrip-tache" name="descrip-tache"></textarea></p>
+  <p><input type="hidden"  name="idE" value="{{etudiant.id}}"/></p>
+  <p class="submit"><input type="submit" value="Valider" /></p>
+</form>
+
+
+</form>
+
+<p idE="{{etudiant.id}}" id="etudiant" pathF="{{path('getFormation')}}" pathE="{{path('getExperience')}}" /></p>
+<script>
+                
+                var myLanguage = {
+                 errorTitle : 'Formulaire non valide!',
+                };
+                $.validate({
+                    form : '#formation,#experience',
+                    language:myLanguage,
+                    validateOnBlur : true, // disable validation when input looses focus
+                    //errorMessagePosition : 'top', // Instead of 'element' which is default
+                    scrollToTopOnError : false // Set this property to true if you have a long form
+                   
+    
+                });
+                     
+      
+        
+         $(function() {
+            $( ".dateD" ).datepicker({
+                defaultDate: "+1w",
+                changeMonth: true,
+                dateFormat:"yy-mm-dd",
+                onClose: function( selectedDate ) {
+                $( ".dateF" ).datepicker( "option", "minDate", selectedDate );
+                }
+            });
+            $( ".dateF" ).datepicker({
+                defaultDate: "+1w",
+                changeMonth: true,
+                dateFormat:"yy-mm-dd",
+                onClose: function( selectedDate ) {
+                $( ".dateD" ).datepicker( "option", "maxDate", selectedDate );
+                }
+            });
+      });
+              </script>
+       <div id="LoadingImage" style="display: none;position: absolute;top: 0;left: 550px;z-index: 5000"><img src="{{asset('bundles/iutancienetudiant/images/ajax-loader.gif')}}" width="300" /></div>
+{% endblock %}

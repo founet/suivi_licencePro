@@ -1,0 +1,32 @@
+{% extends "::layout.html.twig" %}
+
+{% block content %}
+    <div id="promotion">
+    <form action="{{path('ajouter_promotion')}}" method="POST" style="margin-bottom: 15px">
+        <p><label>Année Promotion </label> <input style="padding-left:10px" type="text" value="" id="promo" name="promo" class="datepicker"/><input type="submit" id="valid" value="VALIDER" style="margin-left: 15px"/></p>
+         <p><input type="hidden" value="" name="id" id="idpromo"/></p>
+        
+    </form>
+        <table class="table moitier">
+            <tr><th>ID : </th><th>Promotion</th><th></th></tr>
+            {% for promotion in promotions %}
+                <tr id="{{promotion.id}}"><th>{{promotion.id}} </th><th><a href="#" onclick="getPromotion({{promotion.id}})">{{promotion.annee|date('Y')}}</a></th><th><a href="#" class="glyphicon glyphicon-remove-circle" onclick="supprimerPromotion({{promotion.id}})"></a></th></tr>
+            {%endfor%}
+        </table>
+
+</div>
+<p id="promoPath"  pathSupp="{{path('supprimer_promotion')}}" pathGet="{{path('getPromotion')}}" pathModif="{{path('modifier_promotion')}}"></p>
+<script>
+    $(function() {
+      $( ".datepicker" ).datepicker({
+            dateFormat: 'yy',
+            changeMonth: true,
+            changeYear: true,
+            onSelect: function(date){
+                          $("#promo").val(date);
+                      }
+      });
+    });
+  </script>  
+{% endblock %}
+

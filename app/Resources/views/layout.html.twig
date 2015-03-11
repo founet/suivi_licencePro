@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Gestion des anciens étudiants !{% endblock %}</title>
+        {% block stylesheets %}
+                
+                    
+                <link rel="stylesheet" href="{{asset('bundles/iutancienetudiant/css/screen.css')}}" type="text/css" />
+                <link rel="stylesheet" href="{{asset('bundles/iutancienetudiant/css/jquery-ui-1.10.4.custom.min.css')}}" type="text/css" />
+                <link rel="stylesheet" href="{{asset('bundles/iutancienetudiant/css/bootstrap.min.css')}}" type="text/css" />
+  
+        {% endblock %}
+        
+                    
+                 
+        <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
+        
+          {% block javascripts %}        
+                   
+                <script type="text/javascript" src="{{ asset('bundles/iutancienetudiant/js/jquery.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('bundles/iutancienetudiant/js/etudiant.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('bundles/iutancienetudiant/js/jquery-ui-1.10.4.custom.min.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('bundles/iutancienetudiant/js/jquery.form-validator.min.js') }}"></script>
+
+         {% endblock %}
+                <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body >
+        {% block body %}
+                <!-- Start: page-top-outer -->
+<div id="page-top-outer">    
+
+<!-- Start: page-top -->
+<div id="page-top">
+
+	<!-- start logo -->
+	<div id="logo">
+	<a href="{{path('liste_etudiants')}}"><img src={{ asset('bundles/iutancienetudiant/images/logoRVB_IUTDescartes.jpg') }} width="156" height="80" alt="" /></a>
+	</div>
+	<!-- end logo -->
+	
+	<!--  start top-search -->
+	<div id="top-search">
+            <form class="form-inline" role="form" action="{{path('rechercheEmail')}}" method="POST">
+                <div class="form-group ">
+                     <input type="search" class="form-control"  name="email" id="search" placeholder="Recherche par email">
+                </div>
+
+
+                <button type="submit" class="btn btn-default">Rechercher</button>
+              </form>
+                <p><a href="{{path('rechercher')}}" style="color:white;margin-top: 5px;font-weight: bold;float: left">Recherche multicritères</a></p>
+        </div>
+ 	<!--  end top-search -->
+ 	<div class="clear"></div>
+
+</div>
+<!-- End: page-top -->
+
+</div>
+<!-- End: page-top-outer -->
+	
+
+ 
+<!--  start nav-outer-repeat................................................................................................. START -->
+<div class="nav-outer-repeat"> 
+<!--  start nav-outer -->
+<div class="nav-outer"> 
+
+        <!-- start nav-right -->
+        
+            <ul class="login">
+                 <li style="text-transform: uppercase">{{app.user.username}}</li>
+
+                 <li> |  <a href="{{path('fos_user_security_logout')}}"><b>Déconnexion</b></a></li>
+            </ul>
+      
+        <!-- end nav-right -->
+
+
+        <!--  start nav -->
+        <div class="nav">
+            <div class="table">
+                <ul class="select nav"><li><a href="{{path('liste_etudiants')}}"><b>Anciens étudiants</b></a></li>
+
+                    <li><a href="{{path('liste_etudiants_mail')}}"><b>Envoi Email Auto</b></a></li>
+
+                    <li class="dropdown">
+                        <a href="{{path('iut_user_homepage')}}" class="dropdown-toggle" data-toggle="dropdown" id="admin"><b>Admin</b></a>
+                        
+                    
+                    </li>
+
+                    <li><a href="{{path('aide')}}"><b>Aide</b></a></li>
+                    
+                </ul>
+
+                <div class="clear"></div>
+            </div>
+        <div class="clear"></div>
+        </div>
+        <!--  start nav -->
+
+</div>
+<div class="clear"></div>
+<!--  start nav-outer -->
+</div>
+<!--  start nav-outer-repeat................................................... END -->
+
+
+
+<div id="content-outer">
+<!-- start content -->
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</div>
+
+
+<!-- start footer -->         
+<div id="footer">
+	<!--  start footer-left -->
+	<div id="footer-left">
+	Admin Licence Pro &copy; Copyright Université Paris Decartes.  All rights reserved.</div>
+	<!--  end footer-left -->
+	
+</div>
+<!-- end footer -->
+        {% endblock %}
+            
+  <script>
+    $(function() {
+      $( ".datepicker" ).datepicker();
+    });
+    
+    $("#admin").click(function(e) {
+        
+        $("#admin .dropdown-menu").toggle("slow");
+    });
+  </script>   
+    </body>
+</html>

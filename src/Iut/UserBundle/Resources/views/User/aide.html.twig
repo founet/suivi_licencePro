@@ -1,0 +1,164 @@
+{% extends "::layout.html.twig" %}
+{% block content %}
+
+              
+<div class="container">
+    <ul class="aide list-unstyled">
+        <li>
+            <a href="#" id="un" >Connexion au site</a>
+            <p id="un-p" style="display:none; ">
+                 <span>Cette page permet à un utilisateur de se connecter au site un nom d'utilisateur et un mot de passe </span>
+                 <br>
+                 <img src="{{asset('bundles/iutancienetudiant/images/pages/connexion.png')}}" alt=""  />
+               
+           </p>
+        </li>
+        <li><a href="" id="deux">Module Anciens étudiants</a>
+            
+             <ul class="" id="deux-p" >
+                <li>
+                    <a href="" id="trois">Informations personnelles</a>
+                    <p id="trois-p" style="display:none">
+                       
+                        En cliquant sur le lien <img src="{{asset('bundles/iutancienetudiant/images/student_link.png')}}" alt="" />
+                        on est dirigé vers la page qui liste l'ensemble des anciens étudiants avec un bouton pour ajouter <img src="{{asset('bundles/iutancienetudiant/images/pages/btn_add_etudiant.png')}}" alt="" />
+                  
+                        et respectivement un lien modifier et supprimer <img src="{{asset('bundles/iutancienetudiant/images/pages/btn_edit_del.png')}}" alt="" />
+                    <br>
+                    Un clic sur le nom redirige vers la page de profil <br><br>
+                    <img src="{{asset('bundles/iutancienetudiant/images/pages/profil_etudiant.png')}}" alt="" />
+                    
+                       
+                    
+                 </p>
+                </li>
+                <li>
+                    <a href="" id="quatre">Expérience</a>
+                    <p id="quatre-p" style="display:none">
+                    Le formulaire ci-dessous permet d'ajouter et de modifier un expérience professionnelle d'un étudiant 
+                    <br><br>
+                    <img src="{{asset('bundles/iutancienetudiant/images/pages/experience.png')}}" alt="" />
+                    
+                    
+                 </p>
+                </li>
+                <li>
+                    <a href="" id="cinq">Formation</a>
+                    <p id="cinq-p" style="display:none">
+                    Le formulaire ci-dessous permet d'ajouter et de modifier une formation d'un étudiant 
+                    <br><br>
+                    <img src="{{asset('bundles/iutancienetudiant/images/pages/formation.png')}}" alt="" />
+                    
+                 </p>
+                </li>
+                <li>
+                    <a href="" id="six">Recherche multicritères</a>
+                    <p id="six-p" style="display:none">
+                        Le formulaire ci-dessous permet de rechercher un étudiant selon plusieurs critères
+                        <br><br>
+                        <span>Promotion</span>
+                        <br><br>
+                        <span>Poste occupé</span>
+                        <br><br>
+                        <span>Entreprise</span>
+                         <br><br>
+                     <img src="{{asset('bundles/iutancienetudiant/images/pages/recherche_multi.png')}}" alt="" />
+                    
+                    </p>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="" id="sept" >Page Envoi Email de rappel</a>
+            <p id="sept-p" style="display:none">
+                    Cette page affiche la liste des anciens étudiants dont les informations personnelles , 
+                    les formations ou les expériences professionnelles n'ont pas été mis à jour depuis 
+                    plus d'un an
+                    <br><br>
+                     <img src="{{asset('bundles/iutancienetudiant/images/pages/mail.png')}}" alt="" />
+                     
+                    <br><br>
+                    Pour envoyer le mail de rappel à la liste des anciens étudiants il suffit de cliquer sur le lien suivant:
+                    <img src="{{asset('bundles/iutancienetudiant/images/pages/mail_btn.png')}}" alt="" />
+                 </p>
+        </li>
+        <li>
+            <a href="" id="huit">Module Administration</a>
+            <ul id="huit-p" >
+                <li>
+                    <a href="" id="neuf">Gestion des utilisateurs</a>
+                    <p id="neuf-p" style="display:none">
+                     
+                        En cliquant sur le lien <img src="{{asset('bundles/iutancienetudiant/images/user_link1.png')}}" alt="" />
+                        on est dirigé vers la page qui liste l'ensemble des utilisateurs avec un bouton pour ajouter <img src="{{asset('bundles/iutancienetudiant/images/user_link.png')}}" alt="" />
+                  
+                        et respectivement un lien modifier et supprimer <img src="{{asset('bundles/iutancienetudiant/images/pages/btn_edit_del.png')}}" alt="" />
+                   
+                       
+                    
+                 </p>
+                </li>
+                <li>
+                    <a href="" id="dix">Poste</a>
+                    <p  id="dix-p" style="display:none">
+                    Cette page permet d'ajouter un poste , de le modifier en cliquant sur le nom du poste
+                    et aussi supprimer .<br><br>
+                    <img src="{{asset('bundles/iutancienetudiant/images/pages/poste.png')}}" alt="" />
+                    
+                 </p>
+                </li>
+                <li>
+                    <a href="" id="onze">Promotion</a>
+                    <p id="onze-p" style="display:none">
+                    Cette page permet d'ajouter une promotion , de le modifier en cliquant sur l'année de la promotion
+                    et aussi supprimer .<br><br>
+                    <img src="{{asset('bundles/iutancienetudiant/images/pages/promo.png')}}" alt="" />
+                 </p>
+                </li>
+            </ul>
+        
+        </li>
+    </ul>
+</div>
+<script type="text/javascript">
+    
+    $( "#un" ).click(function() {
+         $( "#un-p" ).toggle("slow"); 
+         return false;
+    });
+    $( "#deux" ).click(function() {
+         $( "#deux-p" ).toggle('bounce'); 
+         return false;
+    });
+    $( "#trois" ).click(function() {
+         $( "#trois-p" ).toggle("slow"); 
+         return false;
+    });
+    $( "#quatre" ).click(function() {
+         $( "#quatre-p" ).toggle("slow"); 
+         return false;
+    });
+    $( "#cinq" ).click(function() {
+         $( "#cinq-p" ).toggle("slow"); return false;
+    });
+    $( "#six" ).click(function() {
+         $( "#six-p" ).toggle("slow"); return false;
+    });
+    $( "#sept" ).click(function() {
+         $( "#sept-p" ).toggle("slow"); return false;
+    });
+    $( "#huit" ).click(function() {
+         $( "#huit-p" ).toggle("slow"); return false;
+    });
+    $( "#neuf" ).click(function() {
+         $( "#neuf-p" ).toggle("slow");return false; 
+    });
+    $( "#dix" ).click(function() {
+         $( "#dix-p" ).toggle("slow");return false; 
+    });
+    $( "#onze" ).click(function() {
+         $( "#onze-p" ).toggle("slow");return false; 
+    });
+    
+    </script>
+{% endblock %}

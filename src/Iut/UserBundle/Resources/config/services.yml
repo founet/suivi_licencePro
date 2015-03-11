@@ -1,0 +1,15 @@
+parameters:
+#    iut_user.example.class: Iut\UserBundle\Example
+
+services:
+#    iut_user.example:
+#        class: %iut_user.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+     iut_user.registration.form.type:
+         class: Iut\UserBundle\Form\Type\RegistrationFormType
+         arguments: [%fos_user.model.user.class%]
+         tags:
+             - { name: form.type, alias: iut_user_registration }
+             
+  

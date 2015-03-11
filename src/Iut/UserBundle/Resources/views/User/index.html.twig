@@ -1,0 +1,42 @@
+  
+{% extends "::layout.html.twig" %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-6">
+        <a href="{{path('add_user_at_list')}}" class="btn btn-primary" style="margin-bottom:15px">Ajouter un nouvel utilisateur</a> 
+
+<table class="table">
+    <tr>
+        <th># </th>
+        <th>Pseudo</th>
+        <th>Email</th>
+        
+        <th>Actions</th>
+    </tr>
+    {% for user in users %}
+     <tr class='tr{{user.id}}'>
+         
+        <td>{{user.id}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.email}}</td>
+        <td><a href="{{path('modif_user_at_list',{'id':user.id})}}" class="glyphicon glyphicon-edit"></a> - <a href="#" onclick="supprimerUser({{user.id}})" id="{{user.id}}" class="glyphicon glyphicon-remove-circle"></a></td>
+    </tr>
+    {% endfor%}
+</table>
+<p id="user-list" pathSupp="{{path('supprimer_user')}}"></p>
+    </div>
+     <div class="col-md-6" id="nav-side">
+         <ul class="pull-right list-unstyled" style="padding-right: 58px;padding-top: 43px">
+            
+             <li><a href="{{path('poste')}}" class="btn btn-info">Poste Occupé</a></li>
+             <li><a href="{{path('promotion')}}" class="btn btn-info">Promotion</a></li>
+         </ul>
+     
+     </div>
+
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends "::layout.html.twig" %}
+
+{% block content %}  
+<div class="row container">
+            <div>
+                <h3><leqend>  Recherche avancée  </leqend></h3>
+            </div>
+            <form class="form-horizontal" role="form" action="{{path('rechercher')}}" method="POST">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="promo_field" class="col-lg-2 control-label">Promotion</label>
+                        <div class="col-lg-10">
+                            <select class="form-control" id="promo_field" name="promotion">
+                                 <option value=''>---------</option>
+                                 {% for promo in promotions %}
+                                 <option value="{{promo.id}}">{{promo.annee|date('Y')}}</option>
+                                   
+                                 {%endfor%}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+         
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="poste_field" class="col-lg-2 control-label">Poste</label>
+                        <div class="col-lg-10">
+                            <select class="form-control" id="poste_field" name="poste">
+                                 <option value=''>---------</option>
+                                 {% for poste in postes %}
+                                 <option value="{{poste.id}}">{{poste.poste}}</option>
+                                   
+                                 {%endfor%}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                 <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="entreprise_field" class="col-lg-2 control-label">Entreprise</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" name="entreprise" id="entreprise_field" placeholder="Exple: Microsoft ou Capgemini">
+                        </div>
+                    </div>
+                </div>
+                    <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="col-lg-2 control-label"></label>
+                        <div class="col-lg-10">
+                            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>
+                                    rechercher
+                             </button>
+                        </div>
+                    </div>
+                </div>
+                        
+         
+            </form>
+            
+              
+            
+             
+     </div>
+
+{%if etudiants is defined %}
+<p style="margin:15px 0 15px 0;font-size: 18px"><b>Résultats de la recherche</b> </p>
+
+{%if etudiants|length ==0 %}<p style="margin:15px 0 15px 0;font-size: 18px">Votre recherche ne donne aucun résultats</p>{%endif%}
+     <table class="table" >
+    <tr>
+        <th>Nom </th>
+        <th>Prénom</th>
+        <th>Email</th>
+        <th>Promo</th>
+    </tr>
+    {% for etudiant in etudiants %}
+     <tr class='tr{{etudiant.id}}'>
+         <td><a href="{{path('profil_etudiant',{'id':etudiant.id})}}">{{etudiant.nom}}</a> </td>
+        <td>{{etudiant.prenom}}</td>
+        <td>{{etudiant.email}}</td>
+        <td>{{etudiant.promotion.annee|date('Y')}}</td>
+      </tr>
+      
+    {% endfor%}
+</table>
+
+{%endif%}
+   {% endblock %}
+  
